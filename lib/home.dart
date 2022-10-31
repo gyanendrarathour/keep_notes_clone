@@ -7,6 +7,8 @@ import 'package:keep_notes_clone/searchPage.dart';
 import 'package:keep_notes_clone/services/db.dart';
 import 'package:keep_notes_clone/sideMenuBar.dart';
 
+import 'model/myNoteModel.dart';
+
 class Home extends StatefulWidget {
   const Home({super.key});
 
@@ -25,33 +27,26 @@ class _HomeState extends State<Home> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    // createEntry();
-    // getAllNotes();
-    // getOneNote();
-    // updateOneNote();
-    // getOneNote();
-    deleteOneNote();
-    getAllNotes();
   }
 
-  Future createEntry() async {
-    await NotesDatabase.instance.insertEntry();
+  Future createEntry(Note note) async {
+    await NotesDatabase.instance.insertEntry(note);
   }
 
   Future getAllNotes() async {
     await NotesDatabase.instance.readAllNotes();
   }
 
-  Future getOneNote() async {
-    await NotesDatabase.instance.readOneNote(2);
+  Future getOneNote(int id) async {
+    await NotesDatabase.instance.readOneNote(id);
   }
 
-  Future updateOneNote() async {
-    await NotesDatabase.instance.updateNote(2);
+  Future updateOneNote(Note note) async {
+    await NotesDatabase.instance.updateNote(note);
   }
 
-  Future deleteOneNote() async {
-    await NotesDatabase.instance.deleteNote(2);
+  Future deleteOneNote(Note note) async {
+    await NotesDatabase.instance.deleteNote(note);
   }
 
   @override
