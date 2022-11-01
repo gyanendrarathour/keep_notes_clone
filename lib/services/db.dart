@@ -41,7 +41,7 @@ class NotesDatabase {
   // read the data from database
   Future<List<Note>> readAllNotes() async {
     final db = await instance.database;
-    final orderBy = '${NotesImpNames.createdTime} ASC';
+    final orderBy = '${NotesImpNames.id} ASC';
     final queryResult =
         await db!.query(NotesImpNames.tableName, orderBy: orderBy);
     // print(queryResult);

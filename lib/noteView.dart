@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:keep_notes_clone/colors.dart';
 import 'package:keep_notes_clone/editNoteView.dart';
+import 'package:keep_notes_clone/model/myNoteModel.dart';
 
 class NoteView extends StatefulWidget {
-  const NoteView({super.key});
+  Note note;
+  NoteView({required this.note});
 
   @override
   State<NoteView> createState() => _NoteViewState();
 }
 
 class _NoteViewState extends State<NoteView> {
-  String note =
-      'This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,17 +42,17 @@ class _NoteViewState extends State<NoteView> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Heading',
-              style: TextStyle(
+            Text(
+              widget.note.title,
+              style: const TextStyle(
                   color: white, fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(
               height: 10,
             ),
             Text(
-              note,
-              style: TextStyle(color: white),
+              widget.note.content,
+              style: const TextStyle(color: white),
             )
           ],
         ),

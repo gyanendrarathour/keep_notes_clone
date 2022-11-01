@@ -2,6 +2,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:flutter/material.dart';
 import 'package:keep_notes_clone/colors.dart';
 import 'package:keep_notes_clone/createNoteView.dart';
+import 'package:keep_notes_clone/model/myNoteModel.dart';
 import 'package:keep_notes_clone/noteView.dart';
 import 'package:keep_notes_clone/searchPage.dart';
 import 'package:keep_notes_clone/sideMenuBar.dart';
@@ -14,6 +15,7 @@ class ArchiveView extends StatefulWidget {
 }
 
 class _ArchiveViewState extends State<ArchiveView> {
+  List<Note> notesList = [];
   final GlobalKey<ScaffoldState> _drawerKey = GlobalKey();
   String note =
       'This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note This is Note';
@@ -146,20 +148,22 @@ class _ArchiveViewState extends State<ArchiveView> {
             ],
           ),
         ),
-        Container(
-            // height: MediaQuery.of(context).size.height,
-            child: InkWell(
-          onTap: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => NoteView()));
-          },
-          child: MasonryGridView.count(
-            // physics: const NeverScrollableScrollPhysics(),
-            itemCount: 5,
-            shrinkWrap: true,
-            crossAxisCount: 2,
-            itemBuilder: (context, index) {
-              return Container(
+        MasonryGridView.count(
+          // physics: const NeverScrollableScrollPhysics(),
+          itemCount: 5,
+          shrinkWrap: true,
+          crossAxisCount: 2,
+          itemBuilder: (context, index) {
+            return InkWell(
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => NoteView(
+                              note: notesList[index],
+                            )));
+              },
+              child: Container(
                 padding: const EdgeInsets.all(10),
                 margin:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -189,10 +193,10 @@ class _ArchiveViewState extends State<ArchiveView> {
                     )
                   ],
                 ),
-              );
-            },
-          ),
-        ))
+              ),
+            );
+          },
+        )
       ],
     );
   }
