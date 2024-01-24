@@ -1,6 +1,8 @@
 # keep_notes_clone
 
 A new Flutter project.
+<br>
+Author: Gyanendra Singh
 
 ## Getting Started
 
